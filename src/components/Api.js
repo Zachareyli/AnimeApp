@@ -10,13 +10,34 @@ export default function AnimeFinal() {
  const [search, setSearch]=useState('')
  console.log(search)
 
-  const { isLoading, error, data, isFetching, } = useQuery(["animeData"], () =>
+  const { isLoading, error, data: dataTop, isFetching, } = useQuery(["animeData"], () =>
     axios
       .get(`https://api.jikan.moe/v4/top/anime?q=${search}`)
       .then((res) => res.data)
       
   );
-    console.log(data);
+  const { data: dataAir } = useQuery(["animeAir"], () =>
+    axios
+      .get(`https://api.jikan.moe/v4/seasons/now?q=${search}`)
+      .then((res) => res.data)
+      
+  );
+  const { data: dataAnime } = useQuery(["animeAnime"], () =>
+    axios
+      .get(`https://api.jikan.moe/v4/anime?q=${search}`)
+      .then((res) => res.data)
+      
+  );
+  const { data: dataRec } = useQuery(["animeRec"], () =>
+    axios
+      .get(`https://api.jikan.moe/v4/manga?=${search}`)
+      .then((res) => res.data)
+      
+  );
+    console.log(dataTop);
+    console.log(dataAir);
+    console.log(dataAnime);
+    console.log(dataRec);
  
   
     if (isLoading) {
@@ -54,7 +75,9 @@ const SlideRighttt = () => {
   return (
     <> 
     <div className="body">
-    <input type="text" placeholder="Search Anime..." value={search} onChange={(e)=>setSearch(e.target.value)}/>
+    <div className='background'>
+      <input className="search" type="text" placeholder="Search Anime..." value={search} onChange={(e)=>setSearch(e.target.value)}/>
+    </div>
     <div className="none">{isFetching ? "." : "Loading"}</div>
     <h1>Top Anime</h1>
     <div className="button">
@@ -62,11 +85,11 @@ const SlideRighttt = () => {
     <button onClick={SlideLeft}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="slider">
-    {data.data && data.data.filter((item) => {
+    {dataTop.data && dataTop.data.filter((item) => {
       return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
     })
     .map((animeData) =>(
-            <AnimeMap animeData={animeData}/>
+            <AnimeMap key={animeData.mal_id} animeData={animeData}/>
           ))}</div>
           
     <h1>Currently Airing</h1>
@@ -75,23 +98,35 @@ const SlideRighttt = () => {
     <button onClick={SlideLeftt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderr">
-    {data.data && data.data.filter((item) => {
+    {dataAir.data && dataAir.data.filter((item) => {
       return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
     })
-    .map((animeData) => (
-      <AnimeMap animeData={animeData}/>
+    .map((animeAir) =>(
+      <AnimeMap animeData={animeAir}/>
     ))}</div>
     
-    <h1>Recommended</h1>
+    <h1>Random</h1>
     <div className="button">
     <button onClick={SlideRighttt}><BsFillArrowRightCircleFill className="icon"/></button>
     <button onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderrr">
-    {data.data && data.data.filter((item) => {
+    {dataAnime.data && dataAnime.data.filter((item) => {
       return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
-    }).map((animeData) => (
-      <AnimeMap animeData={animeData}/>
+    }).map((animeAnime) => (
+      <AnimeMap animeData={animeAnime}/>
+    ))}</div>
+    
+    <h1>Manga</h1>
+    <div className="button">
+    <button onClick={SlideRighttt}><BsFillArrowRightCircleFill className="icon"/></button>
+    <button onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
+    </div>
+    <div className="grid-row" id="sliderrr">
+    {dataRec.data && dataRec.data.filter((item) => {
+      return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
+    }).map((animeRec) => (
+      <AnimeMap animeData={animeRec}/>
     ))}</div>
     <div className="footer">
       <p className="footer-text">Clayton Crowley <br></br>

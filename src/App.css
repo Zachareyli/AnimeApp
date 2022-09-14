@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     color: white;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none;
   }
 
   
@@ -35,25 +38,27 @@
   }
   .heading{
     text-align: center;
-    height: 60px;
-    margin-top: 10px;
-    font-size: 1.2rem;
+    height: 70px;
+    /* margin-top: 10px; */
+    font-size: 0.9rem;
   }
   @media screen and (max-width: 480px) {
     .heading{
-        font-size: 1rem;
-        margin-bottom: 5px;
+        font-size: 0.7rem;
+        max-height: 70px;
     }
 }
   .img {
     height: 300px;
-    width: 250px;
+    width: 200px;
     border-radius: 20px;
+    margin-top: 10px;
   }
   @media screen and (max-width: 480px) {
     .img{
         height: 200px;
         width: 150px;
+        margin-top: 10px;
     }
 }
   .center{
@@ -61,18 +66,19 @@
     align-items: flex-start;
     text-align: center;
     /* padding: 2%; */
-    margin: 2%;
+    margin-left: 10px;
+    margin-right: 10px;
     /* margin-top: 40px; */
-    margin-bottom: 40px;
+    /* margin-bottom: 5px; */
     border-radius: 20px;
-    border-bottom: 1px solid white;
+    /* border-bottom: 1px solid white; */
     /* border: 1px solid black; */
   }
   
   .grid-row{
     display: flex;
     flex-direction: row;
-    overflow-x: hidden;
+    overflow: hidden;
     color: white;
    cursor: pointer;
   }
@@ -83,6 +89,7 @@
     }
   .center:hover{
     transform: scale(1.1);
+    padding: 20px;
   }
   
   input{
@@ -106,10 +113,11 @@
     margin-top: 50px;
     border-bottom: 3px solid orange;
     padding-bottom: 10px;
+    font-size: 1.4rem;
   }
   @media screen and (max-width: 480px) {
     h1{
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -179,5 +187,41 @@ button{
 
 .orange-text{
   color: orange;
+  font-size: 1rem;
+}
+@media screen and (max-width: 480px) {
+  .orange-text{
+    font-size: 0.6rem;
+    padding: 5px;
+  }
 }
 
+.background::before{
+  content: '';
+  height: 55vh;
+  min-width: 100%;
+  background-size: cover;
+  background-image: url(./images/wallpaperflare.com_wallpaper\ .jpg);
+  position: absolute;
+  /* background-repeat: no-repeat; */
+  border-bottom-left-radius: 120px;
+  border-bottom-right-radius: 20px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.75;
+}
+.background{
+  position: relative; 
+  height: 55vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.search{
+  position: relative;
+}

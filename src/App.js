@@ -1,5 +1,5 @@
 import './App.css';
-import Anime from './components/AnimeQueryWrap.js';
+import Anime from './components/AppQueryWrap.js';
 
 
 function App() {

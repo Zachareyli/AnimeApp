@@ -22,11 +22,12 @@ export default function AnimeFinal() {
       .then((res) => res.data)
       
   );
-  const { data: dataAnime, } = useQuery(["animeAnime",], () =>
+  const { data: dataAnime, refetch} = useQuery(["animeAnime",], () =>
     axios
       .get(`https://api.jikan.moe/v4/anime?q=${search}`)
       .then((res) => res.data),
-      {refetchInterval: 2000,}
+      // {refetchInterval: 2000,}
+      // {enabled: false,}
   );
   const { data: dataRec } = useQuery(["animeRec"], () =>
     axios
@@ -78,8 +79,8 @@ const SlideRighttt = () => {
     <div className="body">
     <div className='background'>
     <form>
-      <input className="search" type="text" placeholder="Search Anime..."  onChange={(event)=>setSearch(event.target.value)}/>
-      {/* <button id="search-btn" onClick={refetch}>hey</button> */}
+      <input className="search" type="text" placeholder="Search Anime..." onChange={(event)=>setSearch(event.target.value)}/>
+      <button id="search-btn" onClick={refetch}></button>
     </form>
     </div>
     <div className="none">{isFetching ? "." : "Loading"}</div>

@@ -227,7 +227,7 @@ button{
 }
 
 #search-btn{
-  z-index: 1000;
+  /* z-index: 1000000; */
   background-color: white;
   border-radius: 5px;
   margin-top: 24px;

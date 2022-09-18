@@ -96,6 +96,7 @@
     border-radius: 20px;
     padding: 10px;
     margin: 20px;
+    margin-right: 0px;
     color: black;
     height: 30px;
     width: 250px;
@@ -125,7 +126,7 @@
     display: none;
   }
 
-button{
+.button-style{
     justify-content: center;
     align-items: center;
     height: 50px;
@@ -138,13 +139,14 @@ button{
     margin-left: 0px;
     margin-top: 20px;
     background-color: transparent;
+    z-index: 100000;
 }
 
 .button{
     margin-bottom: 100px;
 }
 @media screen and (max-width: 480px) {
-    button{
+    .button-style{
         height: 20px;
         width: 20px;
         margin: 5px;
@@ -226,14 +228,31 @@ button{
   position: relative;
 }
 
-#search-btn{
-  /* z-index: 1000000; */
-  background-color: white;
-  border-radius: 5px;
-  margin-top: 24px;
+.button-search{
+  z-index: 1000000;
+  background-color: transparent;
+  /* margin-top: 24px; */
+  border: none;
   height: 50px;
   width: 50px;
-  color: white;
+  color: black;
 }
 
+.search-icon{
+  height: 50px;
+  width: 40px;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgba(18, 18, 18, 0.6);
+  padding-left: 5px;
+  border-radius: 5px;
+}
 
+@media screen and (max-width: 480px){
+  .search-icon{
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    width: 35px;
+  }
+}

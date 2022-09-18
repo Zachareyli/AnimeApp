@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import AnimeMap from "./TopAnime";
-import {BsFillArrowRightCircleFill, BsFillArrowLeftCircleFill} from 'react-icons/bs'
-
+import {BsFillArrowRightCircleFill, BsFillArrowLeftCircleFill, } from 'react-icons/bs'
+import {FaSearch} from 'react-icons/fa'
 
 export default function AnimeFinal() {
   
@@ -78,17 +78,15 @@ const SlideRighttt = () => {
     <> 
     <div className="body">
     <div className='background'>
-    <form>
       <input className="search" type="text" placeholder="Search Anime..." onChange={(event)=>setSearch(event.target.value)}/>
-      <button id="search-btn" onClick={refetch}></button>
-    </form>
+      <button className="button-search" onClick={refetch}><FaSearch className="search-icon"/></button>
     </div>
     <div className="none">{isFetching ? "." : "Loading"}</div>
      
     <h1>Anime</h1>
     <div className="button">
-    <button onClick={SlideRighttt}><BsFillArrowRightCircleFill className="icon"/></button>
-    <button onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideRighttt}><BsFillArrowRightCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderrr">
     {dataAnime.data && dataAnime.data.filter((item) => {
@@ -99,8 +97,8 @@ const SlideRighttt = () => {
     
     <h1>Top Anime</h1>
     <div className="button">
-    <button onClick={SlideRight}><BsFillArrowRightCircleFill className="icon"/></button>
-    <button onClick={SlideLeft}><BsFillArrowLeftCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideRight}><BsFillArrowRightCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideLeft}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="slider">
     {dataTop.data && dataTop.data.filter((item) => {
@@ -112,8 +110,8 @@ const SlideRighttt = () => {
           
     <h1>Currently Airing</h1>
     <div className="button">
-    <button onClick={SlideRightt}><BsFillArrowRightCircleFill className="icon"/></button>
-    <button onClick={SlideLeftt}><BsFillArrowLeftCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideRightt}><BsFillArrowRightCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideLeftt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderr">
     {dataAir.data && dataAir.data.filter((item) => {
@@ -125,8 +123,8 @@ const SlideRighttt = () => {
    
     <h1>Manga</h1>
     <div className="button">
-    <button onClick={SlideRighttt}><BsFillArrowRightCircleFill className="icon"/></button>
-    <button onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideRighttt}><BsFillArrowRightCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderrr">
     {dataRec.data && dataRec.data.filter((item) => {
@@ -139,6 +137,7 @@ const SlideRighttt = () => {
       Project for fellow anime lovers</p>
     </div>
     </div>
-    </>
+    </> 
+    
   );
 }

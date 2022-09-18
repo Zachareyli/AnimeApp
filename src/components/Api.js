@@ -29,7 +29,7 @@ export default function AnimeFinal() {
       // {refetchInterval: 2000,}
       // {enabled: false,}
   );
-  const { data: dataRec } = useQuery(["animeRec"], () =>
+  const { data: dataRec, } = useQuery(["animeRec"], () =>
     axios
       .get(`https://api.jikan.moe/v4/manga?=${search}`)
       .then((res) => res.data)
@@ -73,12 +73,20 @@ const SlideRighttt = () => {
     let slider = document.getElementById('sliderrr');
     slider.scrollLeft = slider.scrollLeft + 500;
 }
+  const SlideLeftttt = () =>{
+    let slider = document.getElementById('sliderrrr');
+    slider.scrollLeft = slider.scrollLeft - 500;
+  }
+const SlideRightttt = () => {
+    let slider = document.getElementById('sliderrrr');
+    slider.scrollLeft = slider.scrollLeft + 500;
+}
 
   return (
     <> 
     <div className="body">
     <div className='background'>
-      <input className="search" type="text" placeholder="Search Anime..." onChange={(event)=>setSearch(event.target.value)}/>
+      <input className="search" type="text" name="animename" placeholder="Search Anime..." onChange={(event)=>setSearch(event.target.value)}/>
       <button className="button-search" onClick={refetch}><FaSearch className="search-icon"/></button>
     </div>
     <div className="none">{isFetching ? "." : "Loading"}</div>
@@ -89,12 +97,24 @@ const SlideRighttt = () => {
     <button className="button-style" onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderrr">
-    {dataAnime.data && dataAnime.data.filter((item) => {
-      return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
-    }).map((animeAnime) => (
+    {dataAnime.data && dataAnime.data.map((animeAnime) => (
       <AnimeMap animeData={animeAnime}/>
     ))}</div>
     
+    <h1>Manga</h1>
+    <div className="button">
+    <button className="button-style" onClick={SlideRightttt}><BsFillArrowRightCircleFill className="icon"/></button>
+    <button className="button-style" onClick={SlideLeftttt}><BsFillArrowLeftCircleFill className="icon"/></button>
+    </div>
+    <div className="grid-row" id="sliderrrr">
+    {dataRec.data && dataRec.data.filter((item) => {
+      return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
+    }).map((animeRec) => (
+      <AnimeMap animeData={animeRec}/>
+    ))}</div>
+   
+    
+
     <h1>Top Anime</h1>
     <div className="button">
     <button className="button-style" onClick={SlideRight}><BsFillArrowRightCircleFill className="icon"/></button>
@@ -119,24 +139,13 @@ const SlideRighttt = () => {
     })
     .map((animeAir) =>(
       <AnimeMap animeData={animeAir}/>
-    ))}</div>
-   
-    <h1>Manga</h1>
-    <div className="button">
-    <button className="button-style" onClick={SlideRighttt}><BsFillArrowRightCircleFill className="icon"/></button>
-    <button className="button-style" onClick={SlideLefttt}><BsFillArrowLeftCircleFill className="icon"/></button>
-    </div>
-    <div className="grid-row" id="sliderrr">
-    {dataRec.data && dataRec.data.filter((item) => {
-      return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
-    }).map((animeRec) => (
-      <AnimeMap animeData={animeRec}/>
-    ))}</div>
+    ))}</div> 
     <div className="footer">
       <p className="footer-text">Clayton Crowley <br></br>
       Project for fellow anime lovers</p>
     </div>
-    </div>
+   </div>
+
     </> 
     
   );

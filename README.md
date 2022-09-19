@@ -1,5 +1,5 @@
 ## Live Site 
-[DEMO](https://app.netlify.com/sites/anime-collection-clayton/settings/general)
+[DEMO](https://anime-collection-clayton.netlify.app/)
 
 # Getting Started with Create React App
 

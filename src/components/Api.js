@@ -12,13 +12,13 @@ export default function AnimeFinal() {
 
   const { isLoading, error, data: dataTop, isFetching } = useQuery(["animeData"], () =>
     axios
-      .get(`https://api.jikan.moe/v4/top/anime?q=${search}`)
+      .get('https://api.jikan.moe/v4/top/anime')
       .then((res) => res.data)
       
   );
   const { data: dataAir } = useQuery(["animeAir"], () =>
     axios
-      .get(`https://api.jikan.moe/v4/seasons/now?q=${search}`)
+      .get('https://api.jikan.moe/v4/seasons/now')
       .then((res) => res.data)
       
   );
@@ -86,7 +86,7 @@ const SlideRightttt = () => {
     <> 
     <div className="body">
     <div className='background'>
-      <input className="search" type="text" name="animename" placeholder="Search Anime..." onChange={(event)=>setSearch(event.target.value)}/>
+      <input className="search" type="text" name="animename" placeholder="Search Anime..." onChange={(event)=>setSearch(event.target.value)} />
       <button className="button-search" onClick={refetch}><FaSearch className="search-icon"/></button>
     </div>
     <div className="none">{isFetching ? "." : "Loading"}</div>
@@ -107,13 +107,9 @@ const SlideRightttt = () => {
     <button className="button-style" onClick={SlideLeftttt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderrrr">
-    {dataRec.data && dataRec.data.filter((item) => {
-      return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
-    }).map((animeRec) => (
+    {dataRec.data && dataRec.data.map((animeRec) => (
       <AnimeMap animeData={animeRec}/>
     ))}</div>
-   
-    
 
     <h1>Top Anime</h1>
     <div className="button">
@@ -121,10 +117,7 @@ const SlideRightttt = () => {
     <button className="button-style" onClick={SlideLeft}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="slider">
-    {dataTop.data && dataTop.data.filter((item) => {
-      return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
-    })
-    .map((animeData) =>(
+    {dataTop.data && dataTop.data.map((animeData) =>(
             <AnimeMap key={animeData.mal_id} animeData={animeData}/>
           ))}</div>
           
@@ -134,10 +127,7 @@ const SlideRightttt = () => {
     <button className="button-style" onClick={SlideLeftt}><BsFillArrowLeftCircleFill className="icon"/></button>
     </div>
     <div className="grid-row" id="sliderr">
-    {dataAir.data && dataAir.data.filter((item) => {
-      return search.toLowerCase() ==='' ? item : item.title.toLowerCase().includes(search);
-    })
-    .map((animeAir) =>(
+    {dataAir.data && dataAir.data.map((animeAir) =>(
       <AnimeMap animeData={animeAir}/>
     ))}</div> 
     <div className="footer">
